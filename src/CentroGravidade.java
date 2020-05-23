@@ -10,5 +10,6 @@
  */
 public class CentroGravidade {
     public static void main(String[] args) {
+      teste
     }
 }
