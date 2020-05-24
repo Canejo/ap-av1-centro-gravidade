@@ -1,5 +1,6 @@
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 /*
@@ -31,17 +32,20 @@ public class CentroGravidade {
     public static String[] lerArquivo() throws Exception {
         String line;
         int length = 0;
-        FileReader arquivo = new FileReader("C:\\Users\\fcane\\Documents\\GitHub\\ap-av1-centro-gravidade\\src\\arquivo.txt");
-
-        BufferedReader leitor = new BufferedReader(arquivo);
-        String[] conteudo = new String[(int)leitor.lines().count()];
+        String nomeArquivo = "arquivo.txt";
+        // Lendo arquivo texto para contar linhas
+        BufferedReader leitorContador = new BufferedReader(new FileReader(nomeArquivo));
+        String[] conteudo = new String[(int)leitorContador.lines().count()];
+        
+        //Lendo o conteudo e preenchendo matriz
+        BufferedReader leitor = new BufferedReader(new FileReader("arquivo.txt"));
         while ((line = leitor.readLine()) != null) {
             if (line.isEmpty()) {
                 break;
             }
-            conteudo[length] = leitor.readLine();
+            conteudo[length] = line;
 
-            length += line.length();
+            length++;
         }
         // fechar o arquivo
         leitor.close();
@@ -51,6 +55,7 @@ public class CentroGravidade {
     public static float[][] lerVetor() throws Exception {
         String[] conteudo = lerArquivo();
 
+        //Deifinindo tamanho da matriz
         String[] contador = conteudo[0].split(" ");
         int linha = Integer.parseInt(contador[0]);
         int coluna = Integer.parseInt(contador[1]);
